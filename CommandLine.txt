@@ -6,6 +6,7 @@ wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/STI_2020.c
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/STI_2021.csv
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/WHO-COVID-19-global-data.csv
 
+start-all.sh
 hadoop fs -mkdir project
 hadoop fs -mkdir project/input
 hadoop fs -mkdir project/output
@@ -17,4 +18,5 @@ hadoop fs -put QuaStat.tsv project/input
 hadoop fs -put STI_2020.csv project/input
 hadoop fs -put STI_2021.csv project/input
 hadoop fs -put WHO-COVID-19-global-data.csv project/input
-
+wget https://github.com/lemonjin1997/lemonjinData/blob/main/Project.jar
+hadoop jar Project.jar Driver
