@@ -1,3 +1,4 @@
+//Contributor: Sabrina Lee Zhi Ying
 import java.io.IOException;
 
 import org.apache.hadoop.io.LongWritable;
@@ -14,16 +15,21 @@ public class STIRateMapper extends Mapper<LongWritable, Text, Text, Text> {
 		if(!parts[0].equals("Date")){
 			String money = parts[1]+parts[2];
 			money = money.replaceAll("\"", "");
-			double difference = previous - Double.parseDouble(money);
+			if (previous == 0){
+				previous = Double.parseDouble(money);
+			}
+			else{
+			int difference = (int)(previous - Double.parseDouble(money));
 			previous = Double.parseDouble(money);
 			
 			String date = parts[0].replaceAll("/", "-");
 			String dateParts[] =  date.split("-");
 			//year month day
 			String reformDate = dateParts[2] + "-" + dateParts[0] + "-" + dateParts[1];
-			//System.out.println("STIMapper\t" + reformDate + "\t" + difference );
-			if(!Double.toString(difference).equals("0.0")){
-			context.write(new Text(reformDate), new Text("STI\t" + Double.toString(difference)));
+			//System.out.println("STIRateMapper\t" + reformDate + "\t" + difference );
+			if(!Integer.toString(difference).equals("0.0")){
+			context.write(new Text(reformDate), new Text("STI\t" + Integer.toString(difference)));
+			}
 			}
 
 		}
