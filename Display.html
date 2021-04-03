@@ -1,32 +1,10 @@
 <!-- Contributor: Pang Jin Xiang, Sabrina Lee Zhi Ying -->
-<!doctype html>
-<html>
-
-<head>
-	<title>Line Chart</title>
-	<script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
-	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	<style>
-	canvas{
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	</style>
-</head>
-
-<body>
-	<div style="width:75%;">
-		<canvas id="canvas"></canvas>
-	</div>
-	<br>
-	<br>
-
-	<script>
-	var date = [];
-	var covid = [];
-	var STI = [];
-		function readTextFile(file)
+  <html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+var dataBase = [["Date" , "COVID", "STI"]];
+function readTextFile(file)
 		{
 		    var rawFile = new XMLHttpRequest();
 		    rawFile.open("GET", file, false);
@@ -40,9 +18,7 @@
 				var line = allText.split("\n");
 				for (i = 0; i < line.length; i++) {
 				var value = line[i].split("\t");
-				date.push(value[0]);
-				covid.push(value[1]);
-				STI.push(value[2]);
+				dataBase.push([value[0], parseInt(value[1]), parseInt(value[2]) ]);
 				}
 			    }
 			}
@@ -50,79 +26,27 @@
 		    rawFile.send(null);
 		}
 		readTextFile("file:///home/phamvanvung/Project/part-r-00000");
-		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var config = {
-			type: 'line',
-			data: {
-				labels: date,
-				datasets: [{
-					label: 'Covid daily cases',
-					backgroundColor: window.chartColors.red,
-					borderColor: window.chartColors.red,
-					data: covid,
-					fill: false,
-				}, {
-					label: 'STI index increase/decrease',
-					fill: false,
-					backgroundColor: window.chartColors.blue,
-					borderColor: window.chartColors.blue,
-					data: STI,
-				}]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: true,
-					text: 'Confidence of inventor in SG'
-				},
-				tooltips: {
-					mode: 'index',
-					intersect: false,
-				},
-				hover: {
-					mode: 'nearest',
-					intersect: true
-				},
-				scales: {
-					xAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Month'
-						}
-					}],
-					yAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Value'
-						}
-					}]
-				}
-			}
-		};
 
-		window.onload = function() {
-			var ctx = document.getElementById('canvas').getContext('2d');
-			window.myLine = new Chart(ctx, config);
-		};
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-		document.getElementById('randomizeData').addEventListener('click', function() {
-			config.data.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return randomScalingFactor();
-				});
+      function drawChart() {
 
-			});
+        var data = google.visualization.arrayToDataTable(dataBase);
 
-			window.myLine.update();
-		});
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
 
-		var colorNames = Object.keys(window.chartColors);
-		
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-		
-	</script>
-</body>
-
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
 </html>
