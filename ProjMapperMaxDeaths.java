@@ -1,3 +1,4 @@
+//Contributor: Li Qi, Shi En
 import java.io.IOException;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -19,9 +20,9 @@ public class ProjMapperMaxDeaths extends Mapper<Object, Text, Text, Text> {
 				if (country != null && deaths != null && !country.isEmpty()){
 						context.write(new Text(country), new Text(file + deaths));
 				}
+			}
 		}
-		}
-}
+	}
 
 	private String max(String string) {
 		// TODO Auto-generated method stub

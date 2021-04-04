@@ -1,10 +1,11 @@
+//Contributor: Wei Ren, Bryan
 import java.io.IOException;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class CovidMappers extends Mapper<LongWritable, Text, Text, Text>{
+public class COVIDMappers extends Mapper<LongWritable, Text, Text, Text>{
 		private static final String file = "DailyConfirmed\t";
 			
 			protected void map(LongWritable key, Text value, Mapper<LongWritable, Text,Text,Text>.Context context)

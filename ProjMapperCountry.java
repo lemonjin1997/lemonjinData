@@ -1,3 +1,4 @@
+//Contributor: Li Qi, Shi En
 import java.io.IOException;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -10,7 +11,7 @@ public class ProjMapperCountry extends Mapper<Object,Text,Text,Text>{
 		throws IOException, InterruptedException {
 		String countryRecord = value.toString();
 		String[] parts= countryRecord.split("\t");
-		//System.out.println(parts[0] + parts[1]);
 		context.write(new Text(parts[1]), new Text(file + parts[0]));
+		System.out.println("ProjMapperCountry: "+parts[0]+" "+parts[1]);
 	}
 }

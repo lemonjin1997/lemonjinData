@@ -1,3 +1,4 @@
+//Contributor: Wei Ren, Bryan
 import java.io.IOException;
 
 import org.apache.hadoop.io.Text;
@@ -37,4 +38,3 @@ public class DataReducer extends Reducer<Text, Text, Text, Text>{
 	        
 	    }
 }
-

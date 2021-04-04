@@ -1,3 +1,4 @@
+//Contributor: Wei Ren, Bryan
 import java.io.IOException;
 
 import org.apache.hadoop.io.LongWritable;

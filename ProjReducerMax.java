@@ -1,3 +1,4 @@
+//Contributor: Li Qi, Shi En
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,6 @@ public Map<String, String> UnsortedMap = new HashMap<String, String>();
 		for(Text t: values){
 			String parts[] = t.toString().split("\t");
 			if(parts[0].equals("maxDeaths")){
-				System.out.println(parts[1]);
 				if(UnsortedMap.containsKey(key.toString())){
 					if(Double.parseDouble(UnsortedMap.get(key.toString())) < Double.parseDouble(parts[1]) ){
 						UnsortedMap.put(key.toString(), parts[1]);
@@ -31,14 +31,6 @@ public Map<String, String> UnsortedMap = new HashMap<String, String>();
 				name=parts[1];
 			}
 		}
-		if(UnsortedMap.get(key.toString()) != null){
-		System.out.println(name + UnsortedMap.get(key.toString()));
-		//context.write(new Text(name), new Text(UnsortedMap.get(key.toString())) );
-		}
-		/*if(count!= 0){
-		String str = String.format("%d", count);
-		UnsortedMap.put(name, str);
-	}*/
 }
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
@@ -47,8 +39,8 @@ public Map<String, String> UnsortedMap = new HashMap<String, String>();
 		for (Map.Entry<String, String> entry : sortedMap.entrySet()){
 			String name = entry.getKey();
 			String deathz = entry.getValue();
-			
 			context.write(new Text(name), new Text(deathz));
+			System.out.println("ProjReducerMax: "+name +" "+ deathz);
 		}
 	}
 }
