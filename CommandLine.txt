@@ -1,3 +1,10 @@
+//Remove project dir from hadoop if u have any
+hadoop fs -rm -r project
+
+//Start Demo steps
+start-all.sh
+mkdir ProjectDemo
+cd ProjectDemo
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/COVID-Cases.csv
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/Covid-19-SG-2020.tsv
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/ISO-3166-alpha3.tsv
@@ -5,7 +12,7 @@ wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/QuaStat.ts
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/STI_2020.csv
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/STI_2021.csv
 wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/WHO-COVID-19-global-data.csv
-start-all.sh
+ls 
 hadoop fs -mkdir project
 hadoop fs -mkdir project/input
 hadoop fs -mkdir project/output
@@ -16,5 +23,15 @@ hadoop fs -put QuaStat.tsv project/input
 hadoop fs -put STI_2020.csv project/input
 hadoop fs -put STI_2021.csv project/input
 hadoop fs -put WHO-COVID-19-global-data.csv project/input
+hadoop fs -ls project/input
 wget https://github.com/lemonjin1997/lemonjinData/blob/main/Project.jar?raw=true
 hadoop jar Project.jar?raw=true Driver
+hadoop fs -cat project/output/lemonjin/*
+hadoop fs -cat project/output/BW/*
+hadoop fs -cat project/output/LQSETop10/* 
+mkdir output 
+hadoop fs -copyToLocal /user/phamvanvung/project/output/* output
+wget https://raw.githubusercontent.com/lemonjin1997/lemonjinData/main/Display.html
+
+
+Double click Display.html in ProjectDemo folder
