@@ -1,5 +1,4 @@
  <html>
-<!-- Contributed by Everyone-->
   <head>
 <style>
 * {
@@ -42,7 +41,7 @@ function jxsreadTextFile(file)
 		    }
 		    rawFile.send(null);
 		}
-		jxsreadTextFile("output/lemonjin/part-r-00000");
+		jxsreadTextFile("file:////home/phamvanvung/ProjectDemo/output/lemonjin/part-r-00000");
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChartJXS);
@@ -82,7 +81,7 @@ function lqsereadTextFile(file)
 		    }
 		    rawFile.send(null);
 		}
-		lqsereadTextFile("output/LQSETop10/part-r-00000");
+		lqsereadTextFile("file://///home/phamvanvung/ProjectDemo/output/LQSETop10/part-r-00000");
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChartLQSE);
@@ -118,7 +117,7 @@ function bwrreadTextFile(file)
 		    }
 		    rawFile.send(null);
 		}
-		bwrreadTextFile("output/BW/part-r-00000");
+		bwrreadTextFile("file:///home/phamvanvung/ProjectDemo/output/BW/part-r-00000");
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChartBWR);
@@ -145,7 +144,7 @@ function bwrreadTextFile(file)
   <body>
 <div class = "clearfix">
     <div class = "box"id="jxs_chart" style=" height: 500px"></div>
-    <div class = "box"id="bwr_chart" style=" height: 500px"></div>
+    <div class = "box"id="bwr_chart" style="height: 500px"></div>
 </div>
 <div id="lqse_chart" style="height:500px; margin:0 auto;"></div>
   </body>
